@@ -1,1 +1,1 @@
-404 page
+Hey! Hey! bro,Why you come wrong url ?
