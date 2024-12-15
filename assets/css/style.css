@@ -1,0 +1,78 @@
+/* styles.css */
+
+
+/* Toast Container */
+#toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Toast Notification */
+.toaster {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 250px;
+    padding: 15px 20px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    animation: slideIn 0.5s ease, fadeOut 0.5s ease 4.5s forwards;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+/* Success Toast */
+.toaster.success {
+    background-color: #4caf50; /* Green */
+}
+
+/* Warning Toast */
+.toaster.warning {
+    background-color: #ff9800; /* Orange */
+}
+
+/* Error Toast */
+.toaster.error {
+    background-color: #f44336; /* Red */
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.toaster {
+    opacity: 1;
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #4caf50;
+    color: white;
+    border-radius: 5px;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.toaster.fadeOut {
+    animation: fadeOut 1.5s ease forwards;
+}

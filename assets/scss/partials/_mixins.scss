@@ -1,0 +1,88 @@
+@mixin padding-left-right($left:18px,$right:18px){
+    padding-left: $left;
+    padding-right: $right;
+}
+@mixin title-text($font:$primary-font,$color:$primary-color,$size:rem(25px)){
+    font-family: $font;
+    font-size:$size;
+}
+@mixin sub-text($font:$secondary-font,$color:$secondary-color,$size:rem(16px)){
+    font-family: $font;
+    font-size:$size;
+}
+
+//Example of use 
+// padding-left-right(15px,15px);
+
+$breakpoint:(
+    'max-xs':'max-width:320px',
+    'max-sm':'max-width:480px',
+    'max-md':'max-width:768px',
+    'max-lg':'max-width:992px', 
+    'max-xl':'max-width:1140px', 
+    'max-xxl':'max-width:1440px', 
+    'min-xs':'min-width:320px',
+    'min-sm':'min-width:480px',
+    'min-md':'min-width:768px',
+    'min-lg': 'min-width:992px', 
+    'min-xl': 'min-width:1140px', 
+    'min-xxl': 'min-width:1440px', 
+);
+@mixin breakpoint($screan-size) {
+    $map: map-get($breakpoint, $screan-size);
+    
+    // Check if $screan-size exists in the $breakpoint map
+    @if $map {
+        @media (#{$map}) {
+            @content;
+        }
+    }
+    // If not in the map, check if it's a valid custom media query
+    @else if str-index($screan-size, 'max-width:') or str-index($screan-size, 'min-width:') {
+        @media (#{$screan-size}) {
+            @content;
+        }
+    }
+    // Throw an error if it's neither
+    @else {
+        @error "Oops! The breakpoint `#{$screan-size}` isn't defined or valid.";
+    }
+}
+
+
+// Example of use 
+// @include breakpoint(max-md){
+//    do something
+//    padding: 20px 10px;
+// }
+@function rem($pixels) {
+    @return calc($pixels / 16px) * 1rem;
+  }
+//   Example of use
+// body {
+//     font-size: rem(16px); // Output: font-size: 1rem;
+//   }
+
+@mixin button($bg-color, $text-color: #fff) {
+    background-color: $bg-color;
+    color: $text-color;
+    padding: $spacing-unit / 2 $spacing-unit;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  
+    &:hover {
+      background-color: darken($bg-color, 10%);
+    }
+  }
+  
+//   Example of use 
+//   .button-primary {
+//     @include button($primary-color);
+//   }
+  
+//   .button-secondary {
+//     @include button($secondary-color, #333);
+//   }
+  
